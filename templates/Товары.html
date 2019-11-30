@@ -6,14 +6,6 @@
 {% block title %}Here is my title{% endblock %}
 {% block body %}
 {% for element in items %}
-#    {% include 'order_element.html' with order=element %}
-   <div class="product-item">
-  <img src="{{ element.url }}">
-  <div class="product-list">
-    <h3>{{ element.title }}</h3>
-      <span class="price">₽ {{element.Price}} {% if element.type == '0' %}за штуку{% elif element.type == '1'%}за литр{% elif element.type == '2'%}за кг{% endif %} </span>
-      <a href="" class="button">В корзину</a>
-  </div>
-</div>
+    {% include 'order_element.html' with order=element %}
          {% endfor %}
 {% endblock %}

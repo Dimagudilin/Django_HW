@@ -1,10 +1,19 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+      <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
     <title>Title</title>
 </head>
 <body>
-
+<div class="product-item">
+  <img src="{{ order.url }}">
+  <div class="product-list">
+    <h3>{{ order.title }}</h3>
+      <span class="price">₽ {{order.Price}} {% if order.type == '0' %}за штуку{% elif order.type == '1'%}за литр{% elif order.type == '2'%}за кг{% endif %} </span>
+      <a  href="../info/{{element.title}}" class="button">В корзину </a>
+  </div>
+</div>
 </body>
 </html>
