@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+{% load staticfiles %}
+{% block head %}
+     <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
+{% endblock %}
+{% block title %}Here is my title{% endblock %}
+{% block body %}
+        <li><a  href="../{{element.title}}">{{element.title}}</a></li>
+
+{% for element in items %}
+   <div class="product-item">
+  <img src="{{ element.url }}">
+  <div class="product-list">
+    <h3>{{ element.title }}</h3>
+      <span class="price">₽ {{element.Price}} {% if element.type == '0' %}за штуку{% elif element.type == '1'%}за литр{% elif element.type == '2'%}за кг{% endif %} </span>
+      <a href="" class="button">В корзину</a>
+  </div>
+</div>
+         {% endfor %}
+{% endblock %}

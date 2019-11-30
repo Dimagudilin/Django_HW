@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+  {% block head %}{% endblock %}
+	<meta charset="utf-8">
+	<title>{% block title %}Главная страница{% endblock %}</title>
+{% load bootstrap3 %}
+<script src="{% bootstrap_jquery_url %}"></script>
+{% bootstrap_javascript %}
+{% bootstrap_css %}
+</head>
+  <body style="margin-top: 15px;" background="https://st27.stpulscen.ru/images/product/104/607/969_big.jpg">
+<nav class="navbar navbar-default" style="border-top-right-radius: 10px!important;border: 0;!important;margin-bottom: 1vw;">
+  <div style="box-shadow: 0 1px 4px rgba(0,0,0,0.5);margin-bottom: 2px;" class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="padding: 0">
+      <ul class="nav navbar-nav">
+        <li class="active"><a style="border-top-left-radius: 10px;"  href="../{{element.title}}">Главная</a></li>
+          {% for element in pages %}
+        <li><a  href="../{{element.title}}">{{element.title}}</a></li>
+          {% endfor %}
+      </ul>
+        </li>
+           <form style="padding-top: 0;margin-bottom: 1px;" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input class="search" type="text" placeholder="Поиск">
+        </div>
+        <button type="submit" style="margin-right: 4px;margin-left: 4px;padding-bottom: 0.5px;padding-top: 0.5px" class="btn btn-default">Найти</button>
+      </form>
+      </ul>
+    </div>
+  </div>
+</nav>
+    <div>
+        {% block body %} {% endblock %}
+    </div>
+    </body>
+</html>
