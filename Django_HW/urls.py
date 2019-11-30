@@ -21,5 +21,5 @@ from MyApp.views import  ExampleClass, NavViews
 
 urlpatterns = {
    url('^(?P<nav_id>[\w\-]+)/$', NavViews, name='Navig'),
-   url(r'$', ExampleClass.as_view())
+   url(r'$ ', ExampleClass.as_view())
 }

@@ -5,9 +5,8 @@
 {% endblock %}
 {% block title %}Here is my title{% endblock %}
 {% block body %}
-        <li><a  href="../{{element.title}}">{{element.title}}</a></li>
-
 {% for element in items %}
+#    {% include 'order_element.html' with order=element %}
    <div class="product-item">
   <img src="{{ element.url }}">
   <div class="product-list">
