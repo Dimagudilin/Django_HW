@@ -1,6 +1,33 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.views import View
+import MySQLdb
+
+import mysql.connector
+
+
+
+
+
+db=MySQLdb.connect(
+    host="localhost",
+    user="dbuser",
+    passwd="Angry_cat",
+    db="first_db"
+)
+c=db.cursor()
+c.execute("select * from items;")
+entries=c.fetchall()
+c.close()
+db.close()
+
+
+cnx = mysql.connector.connect(host='localhost',database='test')
+cur = cnx.cursor()
+cur.execute("SELECT c1, c2 FROM t1")
+
+cur.close()
+cnx.close()
 
 mylist = {
     'pages': [
@@ -16,20 +43,14 @@ mylist = {
         {'title': 'Сок', 'Price': '33', ' discount': '15', 'address': ' FakeAdress229', 'type': '1','url':'http://www.dobry.ru/assets-new/images/products/multifruit/image-2.png'}
     ]
 }
-##def (request):
-##    return HttpResponse('this is function view')
+
 def NavViews(request, nav_id):
     print('goodbye')
+
     return render(request, nav_id+'.html', mylist)
 
-##class NavViews(View):
-##    def get(self, request, title):
- ##       return render(request, 'Товары.html')
-
-#class ExampleClass(View):
-#    def get(self, request):
-#        return HttpResponse('this is class')
 class ExampleClass(View):
     def get(self, request):
         print('hello')
+
         return render(request, 'main.html', mylist)
