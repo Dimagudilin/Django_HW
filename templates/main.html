@@ -1,3 +1,7 @@
 {% extends "index.html" %}
 {% block title %}Главная{% endblock %}
-{% block body %}Основная страница{% endblock %}
+{% block body %}Основная страница
+{% for element in e %}
+    {% include 'order_element.html' with order=element %}
+         {% endfor %}
+{% endblock %}

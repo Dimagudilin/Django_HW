@@ -59,5 +59,6 @@ class ExampleClass(View):
         print(mylist)
         c.close()
         db.close()
-        return render(request, 'main.html', mylist)
+        print(e.get("discount"))
+        return render(request, 'main.html', mylist, e)
 

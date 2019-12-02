@@ -35,6 +35,9 @@
 </nav>
     <div>
         {% block body %} {% endblock %}
+    {% for element in e %}
+    {{ element.address }}
+         {% endfor %}
     </div>
     </body>
 </html>
