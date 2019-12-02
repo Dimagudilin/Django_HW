@@ -6,28 +6,21 @@ import MySQLdb
 import mysql.connector
 
 
+def sqltodict(cursor, query):
+    from django.db import connection
+    cursor.execute(query)
+    fieldnames = [name[0] for name in cursor.description]
+    result = []
+    for row in cursor.fetchall():
+        rowset = []
+        for field in zip(fieldnames, row):
+            rowset.append(field)
+        result.append(dict(rowset))
+    return result
 
 
 
-db=MySQLdb.connect(
-    host="localhost",
-    user="dbuser",
-    passwd="Angry_cat",
-    db="first_db"
-)
-c=db.cursor()
-c.execute("select * from items;")
-entries=c.fetchall()
-c.close()
-db.close()
 
-
-cnx = mysql.connector.connect(host='localhost',database='test')
-cur = cnx.cursor()
-cur.execute("SELECT c1, c2 FROM t1")
-
-cur.close()
-cnx.close()
 
 mylist = {
     'pages': [
@@ -53,4 +46,18 @@ class ExampleClass(View):
     def get(self, request):
         print('hello')
 
+        db = MySQLdb.connect(
+            host="localhost",
+            user="dbuser",
+            passwd="Angry_cat",
+            db="first_db"
+        )
+        c = db.cursor()
+
+        e = sqltodict(c, "select * from items;")
+        print(e)
+        print(mylist)
+        c.close()
+        db.close()
         return render(request, 'main.html', mylist)
+
